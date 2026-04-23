@@ -46,10 +46,13 @@ def start_quiz():
             user_input = input("Your choice (1-4 or type 'hint'): ").strip().lower()
 
             if user_input == "hint":
-                hint--
-                score -= 10
-                print(f"HINT: {q['hint']} (Score: {score})")
-                continue 
+                if hint > 0:
+                    hint-= 1
+                    score -= 10
+                    print(q['hint'])
+                    continue
+                else:
+                    print("Ran out of hints")
  
             if user_input == q['answer']:
                 score += 50
