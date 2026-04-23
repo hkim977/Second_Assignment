@@ -35,7 +35,7 @@ def start_quiz():
     score = 0
     print("--- Welcome to Sandy's MCQ Quiz! ---")
     print("Rules: Select 1, 2, 3, or 4. Correct (+50), Wrong/Hint (-10)\n")
-
+    hint = 2
 
     for q in questions:
         print(f"Question: {q['question']}")
@@ -46,10 +46,11 @@ def start_quiz():
             user_input = input("Your choice (1-4 or type 'hint'): ").strip().lower()
 
             if user_input == "hint":
+                hint--
                 score -= 10
                 print(f"HINT: {q['hint']} (Score: {score})")
                 continue 
-
+ 
             if user_input == q['answer']:
                 score += 50
                 print(f"Correct! +50 points. (Current Score: {score})\n")
