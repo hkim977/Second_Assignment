@@ -11,6 +11,7 @@
    ```
 5. how to run the file: open vs code by using a terminal(code .) and run the python file
 6. list of contents:
+   ```bash
     a. Take the quiz
        1) Randomly select questions from the quiz data
        2) Check whether the answer is correct or incorrect
@@ -18,8 +19,9 @@
           Correct answer: 100 points
           Wrong answer: -15 points
        4) Hint: Each round allows 2 hints in total
-7. View the quiz
+   ```
+8. View the quiz
    a. Display all the quizzes
-8. View Score
+9. View Score
    a. Reveal the highest score
    
