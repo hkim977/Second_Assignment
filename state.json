@@ -1,7 +1,7 @@
 {
     "quizzes": [
         {
-            "question": "Python에서 문자열을 나타낼 때 사용하는 자료형은 무엇인가요?",
+            "question": "What data type is used to represent strings in Python?",
             "choices": [
                 "int",
                 "str",
@@ -11,7 +11,7 @@
             "answer": 2
         },
         {
-            "question": "조건에 따라 다른 코드를 실행할 때 가장 알맞은 문장은 무엇인가요?",
+            "question": "What is the most appropriate statement to execute different code depending on conditions?",
             "choices": [
                 "for",
                 "if",
@@ -21,7 +21,7 @@
             "answer": 2
         },
         {
-            "question": "여러 개의 값을 순서대로 저장하는 자료형은 무엇인가요?",
+            "question": "What data type stores multiple values in order?",
             "choices": [
                 "dict",
                 "list",
@@ -31,7 +31,7 @@
             "answer": 2
         },
         {
-            "question": "함수의 결과를 호출한 곳으로 돌려줄 때 사용하는 키워드는 무엇인가요?",
+            "question": "What keyword is used to return the result of a function to the calling location?",
             "choices": [
                 "break",
                 "pass",
@@ -41,7 +41,7 @@
             "answer": 3
         },
         {
-            "question": "JSON 파일을 다룰 때 파이썬 표준 라이브러리로 주로 사용하는 모듈은 무엇인가요?",
+            "question": "What module is mainly used from the Python standard library when handling JSON files?",
             "choices": [
                 "random",
                 "json",
@@ -51,7 +51,7 @@
             "answer": 2
         },
         {
-            "question": "클래스에서 인스턴스 자신을 가리킬 때 사용하는 첫 번째 매개변수 이름은 보통 무엇인가요?",
+            "question": "What is usually the name of the first parameter used to refer to the instance itself in a class?",
             "choices": [
                 "this",
                 "me",

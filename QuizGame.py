@@ -44,7 +44,7 @@ class Quiz:
    def display(self, number):
        """Print the quiz to the console."""
        print("-" * 40)
-       print(f"[문제 {number}]")
+       print(f"[Question {number}]")
        print(self.question)
        print()
 
@@ -125,7 +125,7 @@ class QuizGame:
        try:
            while True:
                self.show_menu()
-               menu_choice = self.read_number("선택: ", 1, 5)
+               menu_choice = self.read_number("Choice: ", 1, 5)
                print()
 
 
@@ -147,7 +147,7 @@ class QuizGame:
    def print_banner(self):
        """Print the title and current load status."""
        print("=" * 40)
-       print("        나만의 파이썬 퀴즈 게임")
+       print("        My Python Quiz Game")
        print("=" * 40)
 
 
@@ -158,18 +158,18 @@ class QuizGame:
 
    def show_menu(self):
        """Display the main menu."""
-       print("1. 퀴즈 풀기")
-       print("2. 퀴즈 추가")
-       print("3. 퀴즈 목록")
-       print("4. 점수 확인")
-       print("5. 종료")
+       print("1. Take Quiz")
+       print("2. Add Quiz")
+       print("3. Quiz List")
+       print("4. Check Score")
+       print("5. Exit")
        print("=" * 40)
 
 
    def play_quiz(self):
        """Run every saved quiz and update the best score."""
        if not self.quizzes:
-           print("등록된 퀴즈가 없습니다. 먼저 퀴즈를 추가해 주세요.\n")
+           print("No quizzes registered. Please add a quiz first.\n")
            return
 
 
@@ -177,25 +177,25 @@ class QuizGame:
        correct_count = 0
 
 
-       print(f"총 {total_questions}문제를 시작합니다.\n")
+       print(f"Starting a total of {total_questions} questions.\n")
 
 
        for index, quiz in enumerate(self.quizzes, start=1):
            quiz.display(index)
-           answer = self.read_number("정답 번호 (1-4): ", 1, 4)
+           answer = self.read_number("Answer number (1-4): ", 1, 4)
 
 
            if quiz.is_correct(answer):
                correct_count += 1
-               print("정답입니다!\n")
+               print("Correct!\n")
            else:
-               print(f"오답입니다. 정답은 {quiz.answer}번입니다.\n")
+               print(f"Incorrect. The correct answer is {quiz.answer}.\n")
 
 
        score = int((correct_count / total_questions) * 100)
        print("=" * 40)
-       print(f"결과: {total_questions}문제 중 {correct_count}문제 정답")
-       print(f"점수: {score}점")
+       print(f"Result: {correct_count} correct out of {total_questions} questions")
+       print(f"Score: {score} points")
 
 
        if score > self.best_score:
@@ -203,9 +203,9 @@ class QuizGame:
            self.best_correct_count = correct_count
            self.best_total_questions = total_questions
            self.save_state()
-           print("새로운 최고 점수입니다!")
+           print("New high score!")
        else:
-           print("최고 점수는 유지됩니다.")
+           print("High score remains.")
 
 
        print("=" * 40)
@@ -214,17 +214,17 @@ class QuizGame:
 
    def add_quiz(self):
        """Collect quiz data from the user and save it."""
-       print("새로운 퀴즈를 추가합니다.")
-       question = self.read_text("문제를 입력하세요: ")
+       print("Adding a new quiz.")
+       question = self.read_text("Enter the question: ")
 
 
        choices = []
        for index in range(1, 5):
-           choice = self.read_text(f"선택지 {index}: ")
+           choice = self.read_text(f"Choice {index}: ")
            choices.append(choice)
 
 
-       answer = self.read_number("정답 번호 (1-4): ", 1, 4)
+       answer = self.read_number("Correct answer number (1-4): ", 1, 4)
 
 
        new_quiz = Quiz(question, choices, answer)
@@ -232,17 +232,17 @@ class QuizGame:
        self.save_state()
 
 
-       print("퀴즈가 추가되었습니다.\n")
+       print("Quiz added.\n")
 
 
    def list_quizzes(self):
        """Show the saved quiz list."""
        if not self.quizzes:
-           print("등록된 퀴즈가 없습니다.\n")
+           print("No quizzes registered.\n")
            return
 
 
-       print(f"등록된 퀴즈 목록 (총 {len(self.quizzes)}개)")
+       print(f"Registered quiz list (Total {len(self.quizzes)})")
        print("-" * 40)
 
 
@@ -257,14 +257,13 @@ class QuizGame:
    def show_best_score(self):
        """Print the best score information."""
        if self.best_total_questions == 0:
-           print("아직 퀴즈를 푼 기록이 없습니다.\n")
+           print("No quiz records yet.\n")
            return
 
 
-       print(f"최고 점수: {self.best_score}점")
+       print(f"High score: {self.best_score} points")
        print(
-           f"기록: {self.best_total_questions}문제 중 "
-           f"{self.best_correct_count}문제 정답\n"
+           f"Record: {self.best_correct_count} correct out of {self.best_total_questions} questions\n"
        )
 
 
@@ -273,7 +272,7 @@ class QuizGame:
        if not self.STATE_FILE.exists():
            self.quizzes = self.create_default_quizzes()
            self.startup_message = (
-               f"state.json 파일이 없어 기본 퀴즈 {len(self.quizzes)}개를 불러왔습니다."
+               f"state.json file not found, loaded {len(self.quizzes)} default quizzes."
            )
            return
 
@@ -301,8 +300,8 @@ class QuizGame:
 
 
            self.startup_message = (
-               f"저장된 데이터를 불러왔습니다. "
-               f"(퀴즈 {len(self.quizzes)}개, 최고 점수 {self.best_score}점)"
+               f"Loaded saved data. "
+               f"({len(self.quizzes)} quizzes, high score {self.best_score} points)"
            )
        except (OSError, json.JSONDecodeError, TypeError, ValueError):
            self.quizzes = self.create_default_quizzes()
@@ -310,7 +309,7 @@ class QuizGame:
            self.best_correct_count = 0
            self.best_total_questions = 0
            self.startup_message = (
-               "state.json 파일이 손상되어 기본 퀴즈 데이터로 복구했습니다."
+               "state.json file corrupted, restored with default quiz data."
            )
            self.save_state()
 
@@ -329,18 +328,18 @@ class QuizGame:
            with self.STATE_FILE.open("w", encoding="utf-8") as file:
                json.dump(data, file, ensure_ascii=False, indent=4)
        except OSError:
-           print("파일 저장 중 오류가 발생했습니다. 다시 시도해 주세요.")
+           print("An error occurred while saving the file. Please try again.")
 
 
    def exit_game(self):
        """Save data and close the program from the menu."""
        self.save_state()
-       print("데이터를 저장하고 프로그램을 종료합니다.")
+       print("Saving data and exiting the program.")
 
 
    def handle_safe_exit(self):
        """Save data and close the program after Ctrl+C or EOF."""
-       print("\n입력이 중단되어 저장 후 안전하게 종료합니다.")
+       print("\nInput interrupted, saving and exiting safely.")
        self.save_state()
 
 
@@ -354,7 +353,7 @@ class QuizGame:
 
 
            if not value:
-               print("빈 입력은 사용할 수 없습니다. 다시 입력해 주세요.")
+               print("Empty input is not allowed. Please enter again.")
                continue
 
 
@@ -369,7 +368,7 @@ class QuizGame:
 
            if not text.isdigit():
                print(
-                   f"잘못된 입력입니다. {min_value}-{max_value} 사이의 숫자를 입력해 주세요."
+                   f"Invalid input. Please enter a number between {min_value} and {max_value}."
                )
                continue
 
@@ -377,7 +376,7 @@ class QuizGame:
            number = int(text)
            if not min_value <= number <= max_value:
                print(
-                   f"잘못된 입력입니다. {min_value}-{max_value} 사이의 숫자를 입력해 주세요."
+                   f"Invalid input. Please enter a number between {min_value} and {max_value}."
                )
                continue
 
@@ -389,32 +388,32 @@ class QuizGame:
        """Build the default quiz set used on first launch or recovery."""
        return [
            Quiz(
-               "Python에서 문자열을 나타낼 때 사용하는 자료형은 무엇인가요?",
+               "What data type is used to represent strings in Python?",
                ["int", "str", "bool", "list"],
                2,
            ),
            Quiz(
-               "조건에 따라 다른 코드를 실행할 때 가장 알맞은 문장은 무엇인가요?",
+               "What is the most appropriate statement to execute different code based on conditions?",
                ["for", "if", "while", "import"],
                2,
            ),
            Quiz(
-               "여러 개의 값을 순서대로 저장하는 자료형은 무엇인가요?",
+               "What data type stores multiple values in order?",
                ["dict", "list", "bool", "float"],
                2,
            ),
            Quiz(
-               "함수의 결과를 호출한 곳으로 돌려줄 때 사용하는 키워드는 무엇인가요?",
+               "What keyword is used to return the result of a function to the caller?",
                ["break", "pass", "return", "continue"],
                3,
            ),
            Quiz(
-               "JSON 파일을 다룰 때 파이썬 표준 라이브러리로 주로 사용하는 모듈은 무엇인가요?",
+               "What module from the Python standard library is mainly used to handle JSON files?",
                ["random", "json", "math", "time"],
                2,
            ),
            Quiz(
-               "클래스에서 인스턴스 자신을 가리킬 때 사용하는 첫 번째 매개변수 이름은 보통 무엇인가요?",
+               "What is the usual name for the first parameter that refers to the instance itself in a class?",
                ["this", "me", "self", "current"],
                3,
            ),

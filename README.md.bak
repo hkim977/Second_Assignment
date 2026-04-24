@@ -1,5 +1,5 @@
 
-1. Project Overview
+1. 프로젝트 개요
    ```bash
    a. This project is about implementing a quiz game using Python. Users can take quizzes, add new questions, and save their scores.
    ```
